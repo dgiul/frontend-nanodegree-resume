@@ -30,11 +30,11 @@ var bio = {
         $("#header").prepend(formattedName);
         $("#header").append(formattedBioPic);
         $("#header").append(formattedWelcomeMsg);
-        $("#topContacts").append(formattedMobile);
-        $("#topContacts").append(formattedEmail);
-        $("#topContacts").append(formattedGithub);
-        $("#topContacts").append(formattedTwitter);
-        $("#topContacts").append(formattedLocation);
+        $("#topContacts, #footerContacts").append(formattedMobile);
+        $("#topContacts, #footerContacts").append(formattedEmail);
+        $("#topContacts, #footerContacts").append(formattedGithub);
+        $("#topContacts, #footerContacts").append(formattedTwitter);
+        $("#topContacts, #footerContacts").append(formattedLocation);
 
         // If there are any skills listed in the bio object, add them
         if (bio.skills.length > 0) {
@@ -55,7 +55,7 @@ var education = {
         "name": "Stanford University",
         "location": "Stanford, CA",
         "degree": "Bachelor of Engineering",
-        "major": ["Computer Programming"],
+        "majors": ["Computer Programming"],
         "dates": "1990",
         "url": "http://exploredegrees.stanford.edu/schoolofengineering/"
     }],
@@ -73,13 +73,14 @@ var education = {
                 $('.education-entry:last').append(HTMLschoolName.replace("%data%", item.name).replace("%url%", item.url) + HTMLschoolDegree.replace("%data%", item.degree));
                 $('.education-entry:last').append(HTMLschoolDates.replace("%data%", item.dates));
                 $('.education-entry:last').append(HTMLschoolLocation.replace("%data%", item.location));
-                $('.education-entry:last').append(HTMLschoolMajor.replace("%data%", item.major));
+                $('.education-entry:last').append(HTMLschoolMajor.replace("%data%", item.majors));
             });
         }
 
         if (education.onlineCourses.length > 0) {
+        	$("#education").append(HTMLonlineClasses);
+
             education.onlineCourses.forEach(function(item) {
-                $("#education").append(HTMLonlineClasses);
                 $("#education").append(HTMLschoolStart);
 
                 $('.education-entry:last').append(HTMLonlineTitle.replace("%data%", item.title).replace("%url%", item.url) + HTMLonlineSchool.replace("%data%", item.school));
@@ -151,13 +152,20 @@ var projects = {
             "title": "Google Maps - Updated Map Components",
             "dates": "2014 - 2016",
             "description": "Assisted with refactoring several map components that had been written in an older verion of Polmer",
-            "images": []
+            "images": [
+            	"https://enterprise.google.com/images/maps/industry/maps_graph.png",
+            	"http://www.sanctuarysimon.org/regional_images/site_build/imaps_gis_stack.jpg",
+            	"http://cdn.ndtv.com/tech/images/google_maps_app_screenshot_routes_app_store.jpg"
+            ]
         },
         {
             "title": "nVidia - Partner Success Engineer",
             "dates": "2009 - 2014",
             "description": "Worked closely with 3rd party partners to help them prepare for tradeshows",
-            "images": []
+            "images": [
+            	"http://finedesignassociates.com/assets/ces-2013-nvidia-exhibit-lighting.jpg",
+            	"http://www.investors.com/wp-content/uploads/2016/12/IT17_nvda_122916_company.jpg"
+            ]
         }
     ],
     "display": function() {
